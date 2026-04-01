@@ -32,7 +32,7 @@ RUN npm run build
 
 # 5. Create database and fix permissions
 RUN mkdir -p database && touch database/database.sqlite
-RUN chmod -R 777 storage database bootstrap/cache
+RUN chmod -R 777 storage database public bootstrap/cache
 
 # 6. Final command
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT -t public
