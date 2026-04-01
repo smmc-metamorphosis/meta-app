@@ -23,4 +23,13 @@ COPY . .
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader
 
-CMD php artisan serve --host=0.0.0.0 --port=$PORT
+# --- NEW LINES START HERE ---
+# 1. Create the database directory and an empty sqlite file
+RUN mkdir -p database && touch database/database.sqlite
+
+# 2. Fix permissions so Laravel can write to the database and logs
+RUN chmod -R 777 storage database
+# --- NEW LINES END HERE ---
+
+# Updated CMD to run migrations before starting
+CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
