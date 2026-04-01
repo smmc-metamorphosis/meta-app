@@ -1,354 +1,765 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @vite(['resources/css/style.css', 'resources/js/script.js'])        
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Metamorphosis - Student Publication</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    
+    <title>Metamorphosis — SMMC Student Publication</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <header>
-        <nav class="navbar">
-            <div class="logo-section">
-                <img src="logo.png" alt="Logo" class="nav-logo">
-                <div class="brand">
-                    <h1>METAMORPHOSIS</h1>
-                    <p>THE OFFICIAL STUDENT PUBLICATION OF SAN MATEO MUNICIPAL COLLEGE</p>
+<!-- ═══════════ HEADER ═══════════ -->
+<header>
+    <nav class="navbar">
+        <div class="logo-section">
+<img src="{{ asset('images/logo.png') }}" alt="Metamorphosis Logo" class="nav-logo">
+            <div class="brand">
+                <h1>METAMORPHOSIS</h1>
+                <p>THE OFFICIAL STUDENT PUBLICATION OF SAN MATEO MUNICIPAL COLLEGE</p>
+            </div>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#home" class="nav-link active" data-page="home">HOME</a></li>
+            <li><a href="#latest" class="nav-link" data-page="latest">LATEST</a></li>
+            <li><a href="#news" class="nav-link" data-page="news">NEWS</a></li>
+            <li><a href="#sports" class="nav-link" data-page="sports">SPORTS</a></li>
+            <li><a href="#feature" class="nav-link" data-page="feature">FEATURE</a></li>
+            <li><a href="#literary" class="nav-link" data-page="literary">LITERARY</a></li>
+            <li><a href="#cartoon" class="nav-link" data-page="cartoon">CARTOON</a></li>
+            <li><a href="#about" class="nav-link" data-page="about">ABOUT</a></li>
+        </ul>
+        <div class="search-bar">
+            <input type="text" placeholder="Search..." id="search-input">
+            <button id="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+    <div class="mobile-nav" id="mobile-nav">
+        <ul>
+            <li><a href="#home" class="nav-link" data-page="home">HOME</a></li>
+            <li><a href="#latest" class="nav-link" data-page="latest">LATEST</a></li>
+            <li><a href="#news" class="nav-link" data-page="news">NEWS</a></li>
+            <li><a href="#sports" class="nav-link" data-page="sports">SPORTS</a></li>
+            <li><a href="#feature" class="nav-link" data-page="feature">FEATURE</a></li>
+            <li><a href="#literary" class="nav-link" data-page="literary">LITERARY</a></li>
+            <li><a href="#cartoon" class="nav-link" data-page="cartoon">CARTOON</a></li>
+            <li><a href="#about" class="nav-link" data-page="about">ABOUT</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- ═══════════ SEARCH OVERLAY ═══════════ -->
+<div class="search-overlay" id="search-overlay">
+    <div class="search-overlay-inner">
+        <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+        <p class="search-label">SEARCH METAMORPHOSIS</p>
+        <input type="text" class="search-big" id="search-big" placeholder="Type to search...">
+        <div class="search-results" id="search-results"></div>
+    </div>
+</div>
+
+<!-- ═══════════ ARTICLE DETAIL PAGE ═══════════ -->
+<div class="page" id="page-article">
+    <div class="article-back-bar">
+        <button class="article-back-btn" id="article-back-btn"><i class="fa-solid fa-arrow-left"></i> <span id="article-back-label">Back</span></button>
+    </div>
+    <main class="article-main container">
+        <div class="article-layout">
+            <div class="article-body">
+                <p class="article-date" id="article-date"></p>
+                <h1 class="article-title" id="article-title"></h1>
+                <p class="article-byline" id="article-byline"></p>
+                <div class="article-hero-img">
+                    <img id="article-img" src="" alt="">
+                    <p class="article-photo-credit" id="article-photo-credit"></p>
+                </div>
+                <div class="article-text" id="article-text"></div>
+                <div class="article-actions">
+
                 </div>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html" class="active">HOME</a></li>
-                <li><a href="latest.html">LATEST</a></li>
-                <li><a href="news.html">NEWS</a></li>
-                <li><a href="sports.html">SPORTS</a></li>
-                <li><a href="feature.html">FEATURE</a></li>
-                <li><a href="literary.html">LITERARY</a></li>
-                <li><a href="graphics.html">GRAPHICS</a></li>
-                <li><a href="about.html">ABOUT</a></li>
-            </ul>
-            <div class="search-bar">
-                <input type="text" placeholder="Search...">
-                <button id="search-btn">🔍</button>
-            </div>
-        </nav>
-    </header>
+        </div>
+    </main>
+</div>
 
+<!-- ═══════════ HOME PAGE ═══════════ -->
+<div class="page active" id="page-home">
     <section class="hero">
         <div class="hero-content">
-            <h2 class="hero-welcome">Welcome to the,</h2>
             <h1 class="hero-title">
-                SMMC Student<br>
-                <span>Publication</span>
+                Citadel of Truth and<br>
+                <em>Responsible Journalism</em>
             </h1>
-            
-            <a href="latest.html" class="cta-button">
-                <i class="fa-solid fa-pen-nib"></i> Read Latest Issue
-            </a>
+            <p class="hero-subtitle">The official student publication documenting campus life, culture, sports, and the voices that shape our community.</p>
+            <div class="hero-actions">
+                <a href="#latest" class="cta-button nav-link" data-page="latest"><i class="fa-solid fa-pen-nib"></i> Read Latest Issue</a>
+                <a href="#about" class="cta-outline nav-link" data-page="about">About Us</a>
+            </div>
+        </div>
+        <div class="scroll-hint">
+            <span>Scroll</span>
+            <div class="scroll-arrow"></div>
         </div>
     </section>
-<style>
-    /* --- CSS VARIABLES & RESET --- */
-:root {
-    --primary-blue: #0044cc;
-    --accent-green: #00a651; /* Matches the building green from the image */
-    --text-white: #ffffff;
-    --overlay-dark: rgba(0, 0, 0, 0.4); /* Darkens background for text readability */
-    --navy: #0a0a45;
-    --dark-navy: #0a0a45;
-    --gold: #f1c40f;
-    --white: #ffffff;
-    --bg: #e5e5e5;
-    --bg-gray: #e5e5e5;
-}
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
+    <main class="container">
+        <section class="section-row reveal">
+            <div class="section-header">
+                <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Latest Stories</span>
+                <div class="line"></div>
+                <a href="#latest" class="nav-link view-all" data-page="latest">View All →</a>
+            </div>
+            <div class="split-grid">
+                <div class="two-col-grid reveal-stagger">
+                    <article class="card" data-article-id="campus-highlights">
+                        <img src="{{ asset('images/story1.jpg') }}" alt="Story" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2214%22 font-family=%22sans-serif%22 x=%2250%25%22 y=%2240%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22><tspan>📷</tspan></text><text fill=%22%23f0b429%22 font-size=%2212%22 font-family=%22sans-serif%22 x=%2250%25%22 y=%2262%25%22 text-anchor=%22middle%22>Campus Life</text></svg>'">
+                        <div class="card-content">
+                            <span class="card-tag">Campus Life</span>
+                            <h3>Campus Highlights 2026</h3>
+                            <p>Recent events showing the growth of our college community and the milestones we've achieved together...</p>
+                            <a href="#" class="read-more article-link" data-article-id="campus-highlights">Read More</a>
+                        </div>
+                    </article>
+                    <article class="card" data-article-id="academic-excellence">
+                        <img src="story2.jpg" alt="Story" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 font-family=%22sans-serif%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Academics</text></svg>'">
+                        <div class="card-content">
+                            <span class="card-tag">Academics</span>
+                            <h3>Academic Excellence</h3>
+                            <p>Celebrating the top achievers of this semester's examinations and the dedication behind their success...</p>
+                            <a href="#" class="read-more article-link" data-article-id="academic-excellence">Read More</a>
+                        </div>
+                    </article>
+                </div>
+                <aside>
+                    <div class="section-header" style="margin-bottom:14px;">
+                        <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Features</span>
+                        <div class="line"></div>
+                    </div>
+                    <div class="feature-stack">
+                        <div class="feature-item article-link" data-article-id="creative-pulse">
+                            <img src="feat1.jpg" alt="F1" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>🎨</text></svg>'">
+                            <div class="feature-text">
+                                <p>The Creative Pulse: Student Art Gallery opening this Friday.</p>
+                                <a href="#" class="read-more article-link" data-article-id="creative-pulse">Read More</a>
+                            </div>
+                        </div>
+                        <div class="feature-item article-link" data-article-id="green-campus">
+                            <img src="feat2.jpg" alt="F2" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>🌿</text></svg>'">
+                            <div class="feature-text">
+                                <p>Green Campus: New initiatives for a sustainable SMMC.</p>
+                                <a href="#" class="read-more article-link" data-article-id="green-campus">Read More</a>
+                            </div>
+                        </div>
+                        <div class="feature-item article-link" data-article-id="mental-health">
+                            <img src="feat3.jpg" alt="F3" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>💙</text></svg>'">
+                            <div class="feature-text">
+                                <p>Mental Health Matters: Building a supportive environment.</p>
+                                <a href="#" class="read-more article-link" data-article-id="mental-health">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
 
-body {
-    overflow-x: hidden;
-}
+        <section class="section-row reveal">
+            <div class="section-header">
+                <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> News</span>
+                <div class="line"></div>
+                <a href="#news" class="nav-link view-all" data-page="news">View All →</a>
+            </div>
+            <div class="three-col-grid reveal-stagger">
+                <article class="card">
+                    <img src="news1.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 font-family=%22sans-serif%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Campus News</text></svg>'">
+                    <div class="card-content">
+                        <span class="card-tag">Campus</span>
+                        <h3>Local Updates</h3>
+                        <p>Latest changes in the municipal college guidelines and what they mean for students...</p>
+                        <a href="#" class="read-more article-link" data-article-id="local-updates">Read More</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="news2.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 font-family=%22sans-serif%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Achievement</text></svg>'">
+                    <div class="card-content">
+                        <span class="card-tag">Achievement</span>
+                        <h3>Regional Win</h3>
+                        <p>Students take home the gold in regional debate championships, proving SMMC's excellence...</p>
+                        <a href="#" class="read-more article-link" data-article-id="regional-win">Read More</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="news3.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 font-family=%22sans-serif%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Technology</text></svg>'">
+                    <div class="card-content">
+                        <span class="card-tag">Technology</span>
+                        <h3>Tech Upgrade</h3>
+                        <p>New computer labs now open for all IT students, featuring state-of-the-art equipment...</p>
+                        <a href="#" class="read-more article-link" data-article-id="tech-upgrade">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-/* --- NAVBAR STYLING --- */
-header {
-    background-color: var(--navy);
-    color: var(--white);
-    padding: 10px 5%;
-}
+        <div class="section-row split-grid reveal">
+            <section>
+                <div class="section-header">
+                    <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Sports</span>
+                    <div class="line"></div>
+                    <a href="#sports" class="nav-link view-all" data-page="sports">View All →</a>
+                </div>
+                <div class="two-col-grid reveal-stagger">
+                    <article class="card">
+                        <img src="sports1.jpg" alt="Sports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 font-family=%22sans-serif%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Basketball</text></svg>'">
+                        <div class="card-content">
+                            <span class="card-tag">Basketball</span>
+                            <h3>Varsity Victory</h3>
+                            <p>Basketball team secures a spot in the finals with a stunning last-quarter comeback...</p>
+                            <a href="#" class="read-more article-link" data-article-id="varsity-victory">Read More</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="sports2.jpg" alt="Sports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 font-family=%22sans-serif%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>Volleyball</text></svg>'">
+                        <div class="card-content">
+                            <span class="card-tag">Volleyball</span>
+                            <h3>Volleyball Prep</h3>
+                            <p>Training intensifies for the upcoming season as the team eyes the championship title...</p>
+                            <a href="#" class="read-more article-link" data-article-id="volleyball-prep">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <aside>
+                <div class="section-header" style="margin-bottom:14px;">
+                    <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Cartoon</span>
+                    <div class="line"></div>
+                </div>
+                <div class="cartoon-stack">
+                    <div class="cartoon-thumb-item article-link" data-article-id="arts-month-poster">
+                        <img src="feat1.jpg" alt="C1" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>🎨</text></svg>'">
+                        <div class="cartoon-thumb-text">
+                            <span class="cartoon-thumb-tag">Illustration</span>
+                            <p>Arts Month Poster — Visual tribute to SMMC's celebration.</p>
+                            <a href="#" class="read-more article-link" data-article-id="arts-month-poster">View</a>
+                        </div>
+                    </div>
+                    <div class="cartoon-thumb-item article-link" data-article-id="editorial-cartoon">
+                        <img src="feat2.jpg" alt="C2" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>🖼️</text></svg>'">
+                        <div class="cartoon-thumb-text">
+                            <span class="cartoon-thumb-tag">Editorial</span>
+                            <p>Editorial Cartoon — Tradition meets modern student life.</p>
+                            <a href="#" class="read-more article-link" data-article-id="editorial-cartoon">View</a>
+                        </div>
+                    </div>
+                    <div class="cartoon-thumb-item article-link" data-article-id="campus-lens">
+                        <img src="feat3.jpg" alt="C3" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>📷</text></svg>'">
+                        <div class="cartoon-thumb-text">
+                            <span class="cartoon-thumb-tag">Photography</span>
+                            <p>Campus Lens — Memorable moments this semester.</p>
+                            <a href="#" class="read-more article-link" data-article-id="campus-lens">View</a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+</div>
 
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0;
-}
+<!-- ═══════════ LATEST PAGE ═══════════ -->
+<div class="page" id="page-latest">
+    <div class="page-banner">
+        <p class="page-banner-eyebrow">This Issue</p>
+        <h2><span>Latest</span> Stories</h2>
+    </div>
+    <main class="container">
+        <div class="section-row split-grid reveal">
+            <section>
+                <div class="section-header">
+                    <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Latest Stories</span>
+                    <div class="line"></div>
+                </div>
+                <div class="two-col-grid reveal-stagger">
+                    <article class="card">
+                        <img src="{{ asset('images/story1.jpg') }}" alt="Story" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Campus Life</text></svg>'">
+                        <div class="card-content">
+                            <span class="card-tag">Campus Life</span>
+                            <h3>Campus Highlights 2026</h3>
+                            <p>Recent events showing the growth of our college community and the milestones we've achieved together...</p>
+                            <a href="#" class="read-more article-link" data-article-id="campus-highlights">Read More</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="story2.jpg" alt="Story" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Academics</text></svg>'">
+                        <div class="card-content">
+                            <span class="card-tag">Academics</span>
+                            <h3>Academic Excellence</h3>
+                            <p>Celebrating the top achievers of this semester's examinations and the dedication behind their success...</p>
+                            <a href="#" class="read-more article-link" data-article-id="academic-excellence">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <aside>
+                <div class="section-header" style="margin-bottom:14px;">
+                    <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Features</span>
+                    <div class="line"></div>
+                </div>
+                <div class="feature-stack">
+                    <div class="feature-item">
+                        <img src="feat1.jpg" alt="F1" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>🎨</text></svg>'">
+                        <div class="feature-text">
+                            <p>The Creative Pulse: Student Art Gallery opening this Friday.</p>
+                            <a href="#" class="read-more article-link" data-article-id="creative-pulse">Read More</a>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <img src="feat2.jpg" alt="F2" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>🌿</text></svg>'">
+                        <div class="feature-text">
+                            <p>Green Campus: New initiatives for a sustainable SMMC.</p>
+                            <a href="#" class="read-more article-link" data-article-id="green-campus">Read More</a>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <img src="feat3.jpg" alt="F3" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>💙</text></svg>'">
+                        <div class="feature-text">
+                            <p>Mental Health Matters: Building a supportive environment.</p>
+                            <a href="#" class="read-more article-link" data-article-id="mental-health">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
 
-.logo-section {
-    display: flex; /* Aligns logo image and text in a row */
-    align-items: center; /* Centers them vertically */
-    gap: 15px; /* Space between the logo and the publication name */
-}
+        <section class="section-row reveal">
+            <div class="section-header">
+                <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> News</span>
+                <div class="line"></div>
+            </div>
+            <div class="three-col-grid reveal-stagger">
+                <article class="card">
+                    <img src="news1.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Campus</text></svg>'">
+                    <div class="card-content">
+                        <span class="card-tag">Campus</span>
+                        <h3>Local Updates</h3>
+                        <p>Latest changes in the municipal college guidelines and what they mean for students...</p>
+                        <a href="#" class="read-more article-link" data-article-id="local-updates">Read More</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="news2.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Achievement</text></svg>'">
+                    <div class="card-content">
+                        <span class="card-tag">Achievement</span>
+                        <h3>Regional Win</h3>
+                        <p>Students take home the gold in regional debate championships...</p>
+                        <a href="#" class="read-more article-link" data-article-id="regional-win">Read More</a>
+                    </div>
+                </article>
+                <article class="card">
+                    <img src="news3.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Technology</text></svg>'">
+                    <div class="card-content">
+                        <span class="card-tag">Technology</span>
+                        <h3>Tech Upgrade</h3>
+                        <p>New computer labs now open for all IT students, featuring state-of-the-art equipment...</p>
+                        <a href="#" class="read-more article-link" data-article-id="tech-upgrade">Read More</a>
+                    </div>
+                </article>
+            </div>
+        </section>
 
-.nav-logo {
-    width: 50px; /* Adjust size as needed */
-    height: auto;
-    object-fit: contain;
-}
+        <div class="section-row split-grid reveal">
+            <section>
+                <div class="section-header">
+                    <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Sports</span>
+                    <div class="line"></div>
+                </div>
+                <div class="two-col-grid reveal-stagger">
+                    <article class="card">
+                        <img src="sports1.jpg" alt="Sports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Basketball</text></svg>'">
+                        <div class="card-content">
+                            <span class="card-tag">Basketball</span>
+                            <h3>Varsity Victory</h3>
+                            <p>Basketball team secures a spot in the finals with a stunning last-quarter comeback...</p>
+                            <a href="#" class="read-more article-link" data-article-id="varsity-victory">Read More</a>
+                        </div>
+                    </article>
+                    <article class="card">
+                        <img src="sports2.jpg" alt="Sports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Volleyball</text></svg>'">
+                        <div class="card-content">
+                            <span class="card-tag">Volleyball</span>
+                            <h3>Volleyball Prep</h3>
+                            <p>Training intensifies for the upcoming season as the team eyes the championship title...</p>
+                            <a href="#" class="read-more article-link" data-article-id="volleyball-prep">Read More</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <aside>
+                <div class="section-header" style="margin-bottom:14px;">
+                    <span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Cartoon</span>
+                    <div class="line"></div>
+                </div>
+                <div class="cartoon-stack">
+                    <div class="cartoon-thumb-item">
+                        <img src="feat1.jpg" alt="C1" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>🎨</text></svg>'">
+                        <div class="cartoon-thumb-text">
+                            <span class="cartoon-thumb-tag">Illustration</span>
+                            <p>Arts Month Poster — Visual tribute to SMMC's celebration.</p>
+                            <a href="#" class="read-more article-link" data-article-id="arts-month-poster">View</a>
+                        </div>
+                    </div>
+                    <div class="cartoon-thumb-item">
+                        <img src="feat2.jpg" alt="C2" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>🖼️</text></svg>'">
+                        <div class="cartoon-thumb-text">
+                            <span class="cartoon-thumb-tag">Editorial</span>
+                            <p>Editorial Cartoon — Tradition meets modern student life.</p>
+                            <a href="#" class="read-more article-link" data-article-id="editorial-cartoon">View</a>
+                        </div>
+                    </div>
+                    <div class="cartoon-thumb-item">
+                        <img src="feat3.jpg" alt="C3" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>📷</text></svg>'">
+                        <div class="cartoon-thumb-text">
+                            <span class="cartoon-thumb-tag">Photography</span>
+                            <p>Campus Lens — Memorable moments this semester.</p>
+                            <a href="#" class="read-more article-link" data-article-id="campus-lens">View</a>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+</div>
 
-.brand h1 {
-    margin: 0;
-    font-size: 1.4rem;
-    letter-spacing: 1px;
-    line-height: 1;
-}
+<!-- ═══════════ NEWS PAGE ═══════════ -->
+<div class="page" id="page-news">
+    <div class="page-banner">
+        <p class="page-banner-eyebrow">Stay Informed</p>
+        <h2>Campus <span>News</span></h2>
+    </div>
+    <main class="container">
+        <!-- News Tab Navigation -->
+        <div class="news-tabs">
+            <button class="news-tab active" data-tab="campus-news"><i class="fa-solid fa-building-columns"></i> Campus News</button>
+            <button class="news-tab" data-tab="community-news"><i class="fa-solid fa-users"></i> Community News</button>
+        </div>
 
-.brand p {
-    margin: 0;
-    font-size: 0.6rem;
-    opacity: 0.8;
-    letter-spacing: 0.5px;
-}
+        <!-- Campus News Tab -->
+        <section class="news-tab-content active" id="tab-campus-news">
+            <div class="news-tab-header">
+                <div class="news-section-title">Campus News <span>● SMMC</span></div>
+            </div>
+            <div class="three-col-grid reveal-stagger" id="campus-grid">
+                <article class="card"><img src="news1.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Campus</text></svg>'"><div class="card-content"><span class="card-tag">Campus</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="campus-news-1">Read More</a></div></article>
+                <article class="card"><img src="news2.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Campus</text></svg>'"><div class="card-content"><span class="card-tag">Campus</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="campus-news-2">Read More</a></div></article>
+                <article class="card"><img src="news3.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Campus</text></svg>'"><div class="card-content"><span class="card-tag">Campus</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="campus-news-3">Read More</a></div></article>
+                <article class="card"><img src="news1.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Event</text></svg>'"><div class="card-content"><span class="card-tag">Event</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="campus-news-4">Read More</a></div></article>
+                <article class="card"><img src="news2.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Event</text></svg>'"><div class="card-content"><span class="card-tag">Event</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="campus-news-5">Read More</a></div></article>
+                <article class="card"><img src="news3.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Event</text></svg>'"><div class="card-content"><span class="card-tag">Event</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="campus-news-6">Read More</a></div></article>
+            </div>
+            <div class="pagination" id="campus-pagination">
+                <a href="#" class="page-prev"><i class="fa-solid fa-chevron-left"></i></a>
+                <span class="active" data-page="1">1</span>
+                <a href="#" data-page="2">2</a>
+                <a href="#" data-page="3">3</a>
+                <a href="#" class="page-next"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </section>
 
-.nav-links {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-}
+        <!-- Community News Tab -->
+        <section class="news-tab-content" id="tab-community-news">
+            <div class="news-tab-header">
+                <div class="news-section-title">Community News <span>● LOCAL</span></div>
+            </div>
+            <div class="three-col-grid reveal-stagger" id="community-grid">
+                <article class="card"><img src="news1.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Community</text></svg>'"><div class="card-content"><span class="card-tag">Community</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="community-news-1">Read More</a></div></article>
+                <article class="card"><img src="news2.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Community</text></svg>'"><div class="card-content"><span class="card-tag">Community</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="community-news-2">Read More</a></div></article>
+                <article class="card"><img src="news3.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Community</text></svg>'"><div class="card-content"><span class="card-tag">Community</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="community-news-3">Read More</a></div></article>
+                <article class="card"><img src="news1.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Local</text></svg>'"><div class="card-content"><span class="card-tag">Local</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="community-news-4">Read More</a></div></article>
+                <article class="card"><img src="news2.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Local</text></svg>'"><div class="card-content"><span class="card-tag">Local</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="community-news-5">Read More</a></div></article>
+                <article class="card"><img src="news3.jpg" alt="News" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Local</text></svg>'"><div class="card-content"><span class="card-tag">Local</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae pellentesque sem...</p><a href="#" class="read-more article-link" data-article-id="community-news-6">Read More</a></div></article>
+            </div>
+            <div class="pagination" id="community-pagination">
+                <a href="#" class="page-prev"><i class="fa-solid fa-chevron-left"></i></a>
+                <span class="active" data-page="1">1</span>
+                <a href="#" data-page="2">2</a>
+                <a href="#" data-page="3">3</a>
+                <a href="#" class="page-next"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </section>
+    </main>
+</div>
 
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
+<!-- ═══════════ SPORTS PAGE ═══════════ -->
+<div class="page" id="page-sports">
+    <div class="page-banner">
+        <p class="page-banner-eyebrow">Game On</p>
+        <h2><span>Sports</span> News</h2>
+    </div>
+    <main class="container">
+        <section class="section-row reveal">
+            <div class="section-header"><span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Recently</span><div class="line"></div></div>
+            <div class="split-grid">
+                <div class="two-col-grid reveal-stagger">
+                    <article class="card"><img src="sports1.jpg" alt="Sports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Basketball</text></svg>'"><div class="card-content"><span class="card-tag">Basketball</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae...</p><a href="#" class="read-more article-link" data-article-id="sports-1">Read More</a></div></article>
+                    <article class="card"><img src="sports2.jpg" alt="Sports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Volleyball</text></svg>'"><div class="card-content"><span class="card-tag">Volleyball</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae...</p><a href="#" class="read-more article-link" data-article-id="sports-2">Read More</a></div></article>
+                </div>
+                <aside>
+                    <div class="section-header"><span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Announcements</span><div class="line"></div></div>
+                    <div class="feature-stack">
+                        <div class="feature-item"><img src="feat1.jpg" alt="A" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>📢</text></svg>'"><div class="feature-text"><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur.</p><a href="#" class="read-more article-link" data-article-id="sports-ann-1">Read More</a></div></div>
+                        <div class="feature-item"><img src="feat2.jpg" alt="A" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>📢</text></svg>'"><div class="feature-text"><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur.</p><a href="#" class="read-more article-link" data-article-id="sports-ann-2">Read More</a></div></div>
+                        <div class="feature-item"><img src="feat3.jpg" alt="A" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2272%22 height=%2272%22><rect fill=%22%2307073a%22 width=%2272%22 height=%2272%22/><rect fill=%22%230d0d5c%22 x=%228%22 y=%228%22 width=%2256%22 height=%2256%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2226%22 x=%2250%25%22 y=%2255%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>📢</text></svg>'"><div class="feature-text"><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur.</p><a href="#" class="read-more article-link" data-article-id="sports-ann-3">Read More</a></div></div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+        <section class="section-row reveal">
+            <div class="section-header"><span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Intramurals 2025</span><div class="line"></div></div>
+            <div class="three-col-grid reveal-stagger">
+                <article class="card"><img src="sports1.jpg" alt="Sports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Intramurals</text></svg>'"><div class="card-content"><span class="card-tag">Intramurals</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae...</p><a href="#" class="read-more article-link" data-article-id="intra-1">Read More</a></div></article>
+                <article class="card"><img src="sports2.jpg" alt="Sports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Intramurals</text></svg>'"><div class="card-content"><span class="card-tag">Intramurals</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae...</p><a href="#" class="read-more article-link" data-article-id="intra-2">Read More</a></div></article>
+                <article class="card"><img src="sports1.jpg" alt="Sports" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Intramurals</text></svg>'"><div class="card-content"><span class="card-tag">Intramurals</span><h3>Lorem ipsum dolor sit amet consectetur adipiscing elit.</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae...</p><a href="#" class="read-more article-link" data-article-id="intra-3">Read More</a></div></article>
+            </div>
+            <div class="pagination">
+                <a href="#"><i class="fa-solid fa-chevron-left"></i></a>
+                <span class="active">1</span><a href="#">2</a><a href="#">3</a>
+                <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </section>
+    </main>
+</div>
 
-.nav-links a.active { 
-    color: var(--gold); 
-}
+<!-- ═══════════ FEATURE PAGE ═══════════ -->
+<div class="page" id="page-feature">
+    <div class="page-banner">
+        <p class="page-banner-eyebrow">In Depth</p>
+        <h2><span>Feature</span> Stories</h2>
+    </div>
+    <main class="container">
+        <section class="section-row reveal">
+            <div class="section-header"><span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Featured Articles</span><div class="line"></div></div>
+            <div class="three-col-grid reveal-stagger">
+                <article class="card"><img src="feat1.jpg" alt="Feature" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Arts &amp; Culture</text></svg>'"><div class="card-content"><span class="card-tag">Arts & Culture</span><h3>The Creative Pulse of SMMC</h3><p>Exploring the vibrant arts scene that is quietly transforming how students express themselves on campus...</p><a href="#" class="read-more article-link" data-article-id="creative-pulse">Read More</a></div></article>
+                <article class="card"><img src="feat2.jpg" alt="Feature" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Environment</text></svg>'"><div class="card-content"><span class="card-tag">Environment</span><h3>Green Campus Initiative</h3><p>New sustainability programs are reshaping how San Mateo Municipal College approaches its environmental footprint...</p><a href="#" class="read-more article-link" data-article-id="green-campus">Read More</a></div></article>
+                <article class="card"><img src="feat3.jpg" alt="Feature" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Wellness</text></svg>'"><div class="card-content"><span class="card-tag">Wellness</span><h3>Mental Health Matters</h3><p>Building a more empathetic campus where students feel seen, heard, and supported through every challenge...</p><a href="#" class="read-more article-link" data-article-id="mental-health">Read More</a></div></article>
+                <article class="card"><img src="feat1.jpg" alt="Feature" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Student Life</text></svg>'"><div class="card-content"><span class="card-tag">Student Life</span><h3>Lorem ipsum dolor sit amet</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae...</p><a href="#" class="read-more article-link" data-article-id="feature-4">Read More</a></div></article>
+                <article class="card"><img src="feat2.jpg" alt="Feature" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Innovation</text></svg>'"><div class="card-content"><span class="card-tag">Innovation</span><h3>Lorem ipsum dolor sit amet</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae...</p><a href="#" class="read-more article-link" data-article-id="feature-5">Read More</a></div></article>
+                <article class="card"><img src="feat3.jpg" alt="Feature" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Leadership</text></svg>'"><div class="card-content"><span class="card-tag">Leadership</span><h3>Lorem ipsum dolor sit amet</h3><p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus ex sapien vitae...</p><a href="#" class="read-more article-link" data-article-id="feature-6">Read More</a></div></article>
+            </div>
+            <div class="pagination">
+                <a href="#"><i class="fa-solid fa-chevron-left"></i></a>
+                <span class="active">1</span><a href="#">2</a><a href="#">3</a>
+                <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </section>
+    </main>
+</div>
 
-/* --- 4. Search Bar --- */
-.search-bar {
-    border: 1.5px solid var(--gold);
-    border-radius: 20px;
-    padding: 2px 10px;
-}
+<!-- ═══════════ LITERARY PAGE ═══════════ -->
+<div class="page literary-bg" id="page-literary">
+    <div class="page-banner" style="text-align:center;">
+        <p class="page-banner-eyebrow" style="justify-content:center;">Written Words</p>
+        <h2><span>Literary</span></h2>
+    </div>
+    <main class="container">
+        <section class="section-row reveal" style="margin-bottom:0;">
+            <div class="section-header" style="margin-bottom:36px;">
+                <span class="label" style="background:rgba(255,255,255,0.1);"><span class="label-gold"><i class="fa-solid fa-star"></i></span>&nbsp; National Literature Month 2025</span>
+                <div class="line" style="background:linear-gradient(90deg,rgba(255,255,255,0.2),transparent);"></div>
+            </div>
+            <div class="literary-list reveal-stagger">
+                <div class="literary-row article-link" data-article-id="lit-sailor">
+                    <div class="literary-cover">
+                        <img src="feat1.jpg" alt="The Sailor" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22260%22><rect fill=%22%230d0d5c%22 width=%22200%22 height=%22260%22/><rect fill=%22%2307073a%22 x=%2210%22 y=%2210%22 width=%22180%22 height=%22240%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2240%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>📖</text></svg>'">
+                    </div>
+                    <div class="literary-info">
+                        <span class="literary-genre">Poetry</span>
+                        <h3 class="literary-title">The Sailor</h3>
+                        <p class="literary-author">By Shania Kate Estrera</p>
+                        <p class="literary-excerpt">I sailed across the sea so wide, drawn by a hum the winds can't hide. I chased the breeze with a soul grown thin, yearning for the place where I begin...</p>
+                        <a href="#" class="btn-outline-gold article-link" data-article-id="lit-sailor">Read More</a>
+                    </div>
+                </div>
+                <div class="literary-row article-link" data-article-id="lit-2">
+                    <div class="literary-cover">
+                        <img src="feat2.jpg" alt="Literary 2" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22260%22><rect fill=%22%230d0d5c%22 width=%22200%22 height=%22260%22/><rect fill=%22%2307073a%22 x=%2210%22 y=%2210%22 width=%22180%22 height=%22240%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2240%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>📖</text></svg>'">
+                    </div>
+                    <div class="literary-info">
+                        <span class="literary-genre">Short Story</span>
+                        <h3 class="literary-title">Lorem Ipsum Title</h3>
+                        <p class="literary-author">By Author Name</p>
+                        <p class="literary-excerpt">Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien...</p>
+                        <a href="#" class="btn-outline-gold article-link" data-article-id="lit-2">Read More</a>
+                    </div>
+                </div>
+                <div class="literary-row article-link" data-article-id="lit-3">
+                    <div class="literary-cover">
+                        <img src="feat3.jpg" alt="Literary 3" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22260%22><rect fill=%22%230d0d5c%22 width=%22200%22 height=%22260%22/><rect fill=%22%2307073a%22 x=%2210%22 y=%2210%22 width=%22180%22 height=%22240%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2240%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>📖</text></svg>'">
+                    </div>
+                    <div class="literary-info">
+                        <span class="literary-genre">Essay</span>
+                        <h3 class="literary-title">Lorem Ipsum Title</h3>
+                        <p class="literary-author">By Author Name</p>
+                        <p class="literary-excerpt">Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien...</p>
+                        <a href="#" class="btn-outline-gold article-link" data-article-id="lit-3">Read More</a>
+                    </div>
+                </div>
+                <div class="literary-row article-link" data-article-id="lit-4">
+                    <div class="literary-cover">
+                        <img src="feat1.jpg" alt="Literary 4" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22260%22><rect fill=%22%230d0d5c%22 width=%22200%22 height=%22260%22/><rect fill=%22%2307073a%22 x=%2210%22 y=%2210%22 width=%22180%22 height=%22240%22 rx=%224%22/><text fill=%22%23f0b429%22 font-size=%2240%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>📖</text></svg>'">
+                    </div>
+                    <div class="literary-info">
+                        <span class="literary-genre">Poetry</span>
+                        <h3 class="literary-title">Lorem Ipsum Title</h3>
+                        <p class="literary-author">By Author Name</p>
+                        <p class="literary-excerpt">Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque faucibus ex sapien...</p>
+                        <a href="#" class="btn-outline-gold article-link" data-article-id="lit-4">Read More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="pagination" style="margin-top:40px;">
+                <a href="#"><i class="fa-solid fa-chevron-left"></i></a>
+                <span class="active">1</span><a href="#">2</a><a href="#">3</a>
+                <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </section>
+    </main>
+</div>
 
-.search-bar input {
-    background: transparent;
-    border: none;
-    color: white;
-    outline: none;
-}
+<!-- ═══════════ CARTOON PAGE ═══════════ -->
+<div class="page" id="page-cartoon">
+    <div class="page-banner cartoon-banner">
+        <p class="page-banner-eyebrow">Visual Stories</p>
+        <h2><span>Cartoon</span> & Art</h2>
+    </div>
+    <main class="container">
+        <section class="section-row reveal">
+            <div class="section-header"><span class="label"><span class="label-gold"><i class="fa-solid fa-star"></i></span> Illustrations & Cartoons</span><div class="line"></div></div>
+            <div class="three-col-grid reveal-stagger">
+                <article class="card cartoon-card">
+                    <div class="cartoon-panel">
+                        <img src="feat1.jpg" alt="Cartoon" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Illustration</text></svg>'">
+                        <div class="comic-dots"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag cartoon-tag">Illustration</span>
+                        <h3>Arts Month Poster</h3>
+                        <p>A vibrant visual tribute to the Arts Month celebration at San Mateo Municipal Stadium...</p>
+                        <a href="#" class="read-more article-link" data-article-id="arts-month-poster">View</a>
+                    </div>
+                </article>
+                <article class="card cartoon-card">
+                    <div class="cartoon-panel">
+                        <img src="feat2.jpg" alt="Cartoon" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Editorial</text></svg>'">
+                        <div class="comic-dots"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag cartoon-tag">Editorial</span>
+                        <h3>Editorial Cartoon</h3>
+                        <p>This month's editorial cartoon explores the intersection of tradition and modern student life...</p>
+                        <a href="#" class="read-more article-link" data-article-id="editorial-cartoon">View</a>
+                    </div>
+                </article>
+                <article class="card cartoon-card">
+                    <div class="cartoon-panel">
+                        <img src="feat3.jpg" alt="Cartoon" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Photography</text></svg>'">
+                        <div class="comic-dots"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag cartoon-tag">Photography</span>
+                        <h3>Campus Lens</h3>
+                        <p>A photographic journey through SMMC's most memorable moments this semester...</p>
+                        <a href="#" class="read-more article-link" data-article-id="campus-lens">View</a>
+                    </div>
+                </article>
+                <article class="card cartoon-card">
+                    <div class="cartoon-panel">
+                        <img src="feat1.jpg" alt="Cartoon" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Comic Strip</text></svg>'">
+                        <div class="comic-dots"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag cartoon-tag">Comic Strip</span>
+                        <h3>Lorem ipsum dolor</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus...</p>
+                        <a href="#" class="read-more article-link" data-article-id="cartoon-4">View</a>
+                    </div>
+                </article>
+                <article class="card cartoon-card">
+                    <div class="cartoon-panel">
+                        <img src="feat2.jpg" alt="Cartoon" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Digital Art</text></svg>'">
+                        <div class="comic-dots"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag cartoon-tag">Digital Art</span>
+                        <h3>Lorem ipsum dolor</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus...</p>
+                        <a href="#" class="read-more article-link" data-article-id="cartoon-5">View</a>
+                    </div>
+                </article>
+                <article class="card cartoon-card">
+                    <div class="cartoon-panel">
+                        <img src="feat3.jpg" alt="Cartoon" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22215%22><rect fill=%22%230d0d5c%22 width=%22400%22 height=%22215%22/><text fill=%22%23f0b429%22 font-size=%2212%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22 font-family=%22sans-serif%22>Caricature</text></svg>'">
+                        <div class="comic-dots"></div>
+                    </div>
+                    <div class="card-content">
+                        <span class="card-tag cartoon-tag">Caricature</span>
+                        <h3>Lorem ipsum dolor</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Elit quisque faucibus...</p>
+                        <a href="#" class="read-more article-link" data-article-id="cartoon-6">View</a>
+                    </div>
+                </article>
+            </div>
+            <div class="pagination">
+                <a href="#"><i class="fa-solid fa-chevron-left"></i></a>
+                <span class="active">1</span><a href="#">2</a><a href="#">3</a>
+                <a href="#"><i class="fa-solid fa-chevron-right"></i></a>
+            </div>
+        </section>
+    </main>
+</div>
 
-.search-bar button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
+<!-- ═══════════ ABOUT PAGE ═══════════ -->
+<div class="page" id="page-about">
+    <div class="about-hero">
+        <img src="logo.png" alt="Logo" class="about-hero-logo" onerror="this.style.display='none'">
+        <h1 class="about-title">META<span>MORPHOSIS</span></h1>
+        <p class="about-sub">The Official Student Publication of San Mateo Municipal College</p>
+    </div>
+    <div class="about-content">
+        <div class="mission-box reveal">
+            <h3>Our Mission</h3>
+            <p>Metamorphosis is the official student publication of San Mateo Municipal College, dedicated to informing, inspiring, and uniting the SMMC community through honest journalism, creative expression, and responsible media. We believe every student has a story worth telling — and we're here to tell it.</p>
+        </div>
+        <div class="staff-section reveal">
+            <h3>Meet the Team</h3>
+            <div class="staff-grid reveal-stagger">
+                <div class="staff-card"><div class="staff-card-img"><i class="fa-solid fa-pen-nib"></i></div><div class="staff-info"><p class="staff-name">Editor-in-Chief</p><p class="staff-role">Editorial Board</p></div></div>
+                <div class="staff-card"><div class="staff-card-img"><i class="fa-solid fa-file-pen"></i></div><div class="staff-info"><p class="staff-name">Managing Editor</p><p class="staff-role">Editorial Board</p></div></div>
+                <div class="staff-card"><div class="staff-card-img"><i class="fa-solid fa-newspaper"></i></div><div class="staff-info"><p class="staff-name">News Editor</p><p class="staff-role">News Department</p></div></div>
+                <div class="staff-card"><div class="staff-card-img"><i class="fa-solid fa-trophy"></i></div><div class="staff-info"><p class="staff-name">Sports Editor</p><p class="staff-role">Sports Department</p></div></div>
+                <div class="staff-card"><div class="staff-card-img"><i class="fa-solid fa-palette"></i></div><div class="staff-info"><p class="staff-name">Arts Editor</p><p class="staff-role">Visual Arts</p></div></div>
+                <div class="staff-card"><div class="staff-card-img"><i class="fa-solid fa-camera"></i></div><div class="staff-info"><p class="staff-name">Photo Editor</p><p class="staff-role">Photography</p></div></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-/* --- 5. Layout Containers (Overlap Fix Applied) --- */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 50px; /* This creates the even vertical spacing between rows */
-}
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer>
+    <div class="footer-container">
+        <div class="social-links">
+            <p><i class="fa-brands fa-facebook"></i> /smmcmetamorphosis</p>
+            <p><i class="fa-solid fa-envelope"></i> metamorphosis.smmc@gmail.com</p>
+        </div>
+        <div class="footer-logo">
+            <img src="logo.png" alt="Logo" onerror="this.style.display='none'">
+            <span>META<span style="color:var(--gold)">MORPHOSIS</span></span>
+        </div>
+    </div>
+    <p class="footer-copy">© 2026 Metamorphosis — The Official Student Publication of San Mateo Municipal College</p>
+</footer>
 
-.layout-grid, .split-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr; /* Matches the 2/3 and 1/3 split */
-    gap: 30px; /* Horizontal gap between main content and sidebar */
-}
-
-.section-row {
-    width: 100%;
-}
-
-/* --- 6. Section Headers --- */
-.section-header {
-    display: flex;
-    align-items: flex-end;
-    margin-bottom: 15px;
-}
-
-.section-label, .label {
-    background-color: var(--navy);
-    color: white;
-    padding: 5px 15px;
-    font-size: 0.9rem;
-    margin: 0;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.header-line, .line {
-    flex-grow: 1;
-    height: 3px;
-    background-color: var(--navy);
-}
-
-/* --- HERO SECTION STYLING --- */
-.hero {
-    height: 100vh;
-    width: 100%;
-    /* IMPORTANT: Replace the URL below with your actual campus image */
-    background-image: linear-gradient(var(--overlay-dark), var(--overlay-dark)), url('https://scontent.fmnl33-4.fna.fbcdn.net/v/t39.30808-6/490405795_605722305755902_7679458958080356871_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=cc71e4&_nc_eui2=AeGS-NfIgP-ApSbrkfGW-qOAlMumhnscBU2Uy6aGexwFTcDT0vRQT9_yn-4zJmDXdBk1r3RMuebF7ZFXURpmtOeU&_nc_ohc=rYcVnSXDtH0Q7kNvwFpo1dN&_nc_oc=Adlj1pbFHqXnGn_3z69u6ZEAiAXiDnVg-pGPdvLtaBQ-5UwLvJO7yII5Kgyg6Tq268A&_nc_zt=23&_nc_ht=scontent.fmnl33-4.fna&_nc_gid=jl_nO8MZw8i4ucmFhpFZgQ&oh=00_AfvnYBE6QQEoeYG1daI5K4oNzdkK-L3jG1kefWIDKmejeg&oe=698E3FC1'); 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    align-items: center;
-    padding-left: 5%;
-    position: relative;
-}
-
-.hero-content {
-    color: var(--text-white);
-    max-width: 800px;
-    margin-top: 50px; 
-}
-
-.hero-welcome {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 5px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-}
-
-.hero-title {
-    font-size: 4rem;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 25px;
-    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-}
-
-.hero-title span {
-    display: block;
-}
-
-.cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    background-color: var(--primary-blue);
-    color: white;
-    padding: 12px 30px;
-    border-radius: 30px; 
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: transform 0.3s, background 0.3s;
-    box-shadow: 0 4px 15px rgba(0, 68, 204, 0.4);
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    background-color: #003399;
-}
-
-/* --- RESPONSIVE DESIGN --- */
-@media (max-width: 768px) {
-    .nav-menu {
-        display: none; /* Hidden on mobile */
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-}
-/* --- HAMBURGER MENU STYLES --- */
-.menu-toggle {
-    display: none; /* Hidden on desktop */
-    flex-direction: column;
-    cursor: pointer;
-}
-
-.menu-toggle .bar {
-    width: 25px;
-    height: 3px;
-    background-color: var(--text-white);
-    margin: 3px 0;
-    transition: 0.4s;
-}
-
-/* --- RESPONSIVE DESIGN & MOBILE NAV --- */
-@media (max-width: 768px) {
-    /* Show the hamburger icon */
-    .menu-toggle {
-        display: flex; 
-    }
-
-    /* Style the navigation menu as a dropdown */
-    .nav-menu {
-        display: grid;
-        grid-template-rows: repeat(3, auto);
-        background: rgba(0, 0, 0, 0.95); /* Dark background */
-        position: absolute;
-        top: 100%; /* Push it right below the header */
-        left: 0;
-        width: 100%;
-        height: 0; /* Hidden by default */
-        overflow: hidden; /* Hide content when closed */
-        transition: all 0.4s ease;
-        z-index: 999;
-        gap: 0; /* Remove gap handled by padding */
-    }
-
-    /* The 'active' class slides the menu open */
-    .nav-menu.active {
-        height: 200px; /* Adjust height based on number of items */
-    }
-
-    /* Style individual links for mobile */
-    .nav-menu li {
-        width: 100%;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .nav-menu li a {
-        width: 100%;
-        padding: 20px;
-        display: table; 
-    }
-
-    .nav-menu li a:hover {
-        background-color: var(--primary-blue);
-        color: var(--text-white);
-    }
-
-    /* Hamburger Animation to 'X' */
-    .menu-toggle.is-active .bar:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 6px);
-    }
-
-    .menu-toggle.is-active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .menu-toggle.is-active .bar:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -6px);
-    }
-    
-    .hero-title {
-        font-size: 2.5rem;
-    }
-}
-</style>
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
