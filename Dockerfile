@@ -34,5 +34,5 @@ RUN npm run build
 RUN mkdir -p database && touch database/database.sqlite
 RUN chmod -R 777 storage database public bootstrap/cache
 
-# 6. Final command
-CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT -t public
+# 6. Final command - Using direct PHP server to avoid the "-t" error
+CMD php artisan migrate --force && php -S 0.0.0.0:$PORT -t public
