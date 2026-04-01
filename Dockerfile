@@ -1,6 +1,6 @@
 FROM php:8.4-fpm
 
-# Install system dependencies
+# 1. Install system dependencies & Node.js
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -9,27 +9,30 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     git \
-    curl
+    curl \
+    gnupg
 
-# Install PHP extensions
+# Install Node.js (needed for Vite)
+RUN curl -sL https://deb.nodesource.com/setup_20.x | bash - \
+    && apt-get install -y nodejs
+
+# 2. Install PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql gd zip
 
-# Get latest Composer
+# 3. Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 COPY . .
 
-# Install dependencies
+# 4. Install PHP and Node dependencies, then build assets
 RUN composer install --no-dev --optimize-autoloader
+RUN npm install
+RUN npm run build
 
-# --- NEW LINES START HERE ---
-# 1. Create the database directory and an empty sqlite file
+# 5. Create database and fix permissions
 RUN mkdir -p database && touch database/database.sqlite
+RUN chmod -R 777 storage database bootstrap/cache
 
-# 2. Fix permissions so Laravel can write to the database and logs
-RUN chmod -R 777 storage database
-# --- NEW LINES END HERE ---
-
-# Updated CMD to run migrations before starting
+# 6. Final command
 CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
